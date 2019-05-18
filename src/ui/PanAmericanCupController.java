@@ -17,7 +17,6 @@ public class PanAmericanCupController {
     @FXML
     void prueba(ActionEvent event) {
     	fed.selectEnrolled();
-    	fed.prueba();
     }
 
 }

@@ -68,21 +68,22 @@ public class Federation {
 	public void selectEnrolled() {
 		if(root == null) {
 			first = null;
-		}
-		else {
+		}else {
 			List<Integer> numbers = new ArrayList<>(1000);
 			for (int i=1;i<1001;i++){
 			   numbers.add(i);
 			}
-			Random random = new Random();
-			PossibleAttendees current = root;
 			while ((numbers.size() - 500) >1){
+				Random random = new Random();
 				int number = random.nextInt(numbers.size());
+				PossibleAttendees current = root;
 				while(current != null) {
 					if(number == current.getID()) {
 						Participants n = new Participants(current.getID(), current.getFirstName(), current.getLastName(), current.getEmail(), current.getGender(),current.getCountry(), current.getImage(), current.getBirthday());
 						if(first == null) {
 							first = n;
+							System.out.print(first.getMessage());
+							current = null;
 						}else{
 							Participants aux = first;
 							while(aux.getNext()!= null) {
@@ -90,6 +91,8 @@ public class Federation {
 							}
 							aux.setNext(n);
 							n.setPrev(aux);
+							System.out.print(n.getMessage());
+							current = null;
 						}
 					}else if(number>current.getID()){
 						current = current.getRight();
@@ -99,13 +102,6 @@ public class Federation {
 			     }
 				numbers.remove(number);
 			}
-		}
-	}
-	public void prueba() {
-		Participants current = first;
-		while(current!= null) {
-			current.getMessage();
-			current = current.getNext();
 		}
 	}
 		
