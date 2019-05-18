@@ -33,6 +33,9 @@ public class Participants{
 	public void setPrev(Participants p) {
 		prev = p;
 	}
+	public int getID() {
+		return id;
+	}
 	public String getMessage() {
 		String message = ""; 
 		message += ("ID: " + id + " ,name: " +first_name + " " +last_name + " ,email: " +email + " ,gender: " +gender + " , country: " +country + " ,image: " + image + " ,Birthday: " + birthday + "\n");

@@ -82,7 +82,6 @@ public class Federation {
 						Participants n = new Participants(current.getID(), current.getFirstName(), current.getLastName(), current.getEmail(), current.getGender(),current.getCountry(), current.getImage(), current.getBirthday());
 						if(first == null) {
 							first = n;
-							System.out.print(first.getMessage());
 							current = null;
 						}else{
 							Participants aux = first;
@@ -91,7 +90,6 @@ public class Federation {
 							}
 							aux.setNext(n);
 							n.setPrev(aux);
-							System.out.print(n.getMessage());
 							current = null;
 						}
 					}else if(number>current.getID()){
@@ -103,6 +101,35 @@ public class Federation {
 				numbers.remove(number);
 			}
 		}
+	}
+	public PossibleAttendees searchSpectators(int id) {
+		PossibleAttendees a = null;
+		PossibleAttendees current = root;
+		while(current != null) {
+			if(id == current.getID()) {
+				a = current;
+				current = null;
+			}else if(id >= current.getID()) {
+				current = current.getRight();
+			}else {
+				current = current.getLeft();
+			}
+		}
+		return a;
+	}
+	public Participants searchParticipants(int id) {
+		Participants a = null;
+		Participants current = first;
+		while(current != null) {
+			if(id == current.getID()) {
+				a = current;
+				current = null;
+			}
+			else {
+				current = current.getNext();
+			}
+		}
+		return a;
 	}
 		
 	
