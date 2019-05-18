@@ -61,7 +61,7 @@ public class PossibleAttendees {
 	}
 	public String getMessage() {
 		String message = ""; 
-		message += ("ID: " + id + " ,name: " +first_name + " " +last_name + " ,email: " +email + " ,gender: " +gender + " , country: " +country + " ,image: " + image + " ,Birthday: " + birthday + "\n");
+		message += ("\n ID: " + id + "\n Name: " +first_name + " " +last_name + "\n Email: " +email + "\n Gender: " +gender + "\n Country: " +country  + "\n Birthday: " + birthday + "\n");
 		return message;
 	}
 

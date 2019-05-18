@@ -1,27 +1,32 @@
 package ui;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Federation;
 
 public class PanAmericanCupController {
 	Federation fed = new Federation(null);
 	@FXML
-    private TextField idSpec;
+    private TextField isSpect;
 
     @FXML
     private TextField idParts;
+    @FXML
+    private ImageView image;
 
     @FXML
-    private Pane image;
+    private Label info;
+    
+    @FXML
+    private Label l1;
 
     @FXML
-    private Label information;
+    private Label l2;
 
     @FXML
     void load(ActionEvent event) throws IOException {
@@ -29,23 +34,27 @@ public class PanAmericanCupController {
     	fed.selectEnrolled();
     }
     @FXML
-    void searchParticipants(ActionEvent event) {
+    void searchParticipants(ActionEvent event) throws IOException {
     	int id = Integer.parseInt(idParts.getText());
     	if(fed.searchParticipants(id)!= null) {
-    		System.out.print(fed.searchParticipants(id).getMessage());
+    		info.setText(fed.searchParticipants(id).getMessage());
+    		Image i = new Image(fed.searchParticipants(id).getImage());
+    		image.setImage(i);
     	}else {
-    		System.out.print("The id does not belong to an event participant" + "\n");
+    		l2.setText("The id does not belong to an event participant");
     	}
 
     }
 
     @FXML
     void searchSpectators(ActionEvent event) {
-        int id = Integer.parseInt(idSpec.getText());
+        int id = Integer.parseInt(isSpect.getText());
     	if(fed.searchSpectators(id)!= null) {
-    		System.out.print(fed.searchSpectators(id).getMessage());
+    		info.setText(fed.searchSpectators(id).getMessage());
+    		Image i = new Image(fed.searchSpectators(id).getImage());
+    		image.setImage(i);
     	}else {
-    		System.out.print("The id does not exist" + "\n");
+    	    l1.setText("The id does not exist");
     	}
 
     }
