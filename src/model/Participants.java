@@ -39,6 +39,9 @@ public class Participants{
 	public String getImage() {
 		return image;
 	}
+	public String getCountry() {
+		return country;
+	}
 	public String getMessage() {
 		String message = ""; 
 		message += ("\n ID: " + id + "\n Name: " +first_name + " " +last_name + "\n Email: " +email + "\n Gender: " +gender + "\n Country: " +country  + "\n Birthday: " + birthday + "\n");

@@ -1,12 +1,16 @@
 package ui;
 
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import model.Federation;
 
 public class PanAmericanCupController {
@@ -27,6 +31,9 @@ public class PanAmericanCupController {
 
     @FXML
     private Label l2;
+    @FXML
+    private AnchorPane structure;
+    private String country;
 
     @FXML
     void load(ActionEvent event) throws IOException {
@@ -57,6 +64,29 @@ public class PanAmericanCupController {
     	    l1.setText("The id does not exist");
     	}
 
+    }
+    @FXML
+    void competitors(ActionEvent event) {
+    	if(country == null) {
+    		country = JOptionPane.showInputDialog("Write the country");
+    	}
+    	else {
+    		 fed.viewers(country);
+    	}
+
+    }
+    @FXML
+    void viewers(ActionEvent event) {
+    	if(country == null) {
+    		country = JOptionPane.showInputDialog("Write the country");
+    	}
+    	else {
+    		fed.countryParticipants(country);
+    	}
+
+    }
+    public String getCountry() {
+    	return country;
     }
     
 

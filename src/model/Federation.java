@@ -11,7 +11,7 @@ import java.util.Random;
 public class Federation {
 	private PossibleAttendees root;
 	private Participants first;
-	private final static String PATH_FILE = "data/MOCK_DATA (1).csv";
+	public final static String PATH_FILE = "data/MOCK_DATA (1).csv";
 	public Federation(PossibleAttendees r) {
 		root = r;
 		
@@ -130,6 +130,69 @@ public class Federation {
 			}
 		}
 		return a;
+	}
+	public  Participants countryParticipants(String country) {
+		Participants countryParticipants = null;
+		//System.out.println(""+country);
+		Participants current = first;
+		//System.out.println(""+current.getCountry());
+		while(current != null) {
+			//System.out.println(""+current.getCountry());
+			if(country == current.getCountry()) {
+				System.out.println(""+current.getCountry());
+				if(countryParticipants == null) {
+					//System.out.println(""+current.getCountry());
+					countryParticipants = current;
+				}else {
+					Participants current1 = countryParticipants;
+					while(current1.getNext() != null) {
+						current1 = current1.getNext();
+					}
+					current1.setNext(current);
+					current.setPrev(current1);
+				}
+			}else {
+				current = current.getNext();
+			}
+		}
+		return countryParticipants;
+	}
+	public PossibleAttendees viewers(String country) {
+		PossibleAttendees newRoot = null;
+		PossibleAttendees current = root;
+		while(current!= null) {
+			if(country == current.getCountry()) {
+				System.out.println("" + current.getCountry());
+				if(newRoot == null) {
+					newRoot = current;
+				}
+				else {
+					PossibleAttendees aux = newRoot;
+					if(current.getID() < aux.getID()) {
+						while(aux.getLeft()!= null) {
+							aux = aux.getLeft();
+						}
+						aux.setLeft(current);
+					}
+					else {
+						while(aux.getRight()!= null) {
+							aux = aux.getRight();
+						}
+						aux.setRight(current);
+					}
+					
+				}
+			}
+			else {
+				if(current.getLeft()!= null) {
+					current = current.getLeft();
+				}
+				else {
+					current = current.getRight();
+				}
+			}
+		}
+		return newRoot;
 	}
 		
 	
